@@ -31,12 +31,17 @@ while True:
 
   mask =cv2.inRange(hsv, lower_red, upper_red)
 
+  contour, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+
+  for cnt in contour:
+      cv2.drawContours(frame, [cnt], 0, (0, 0, 0), 3)
   cv2.imshow("Frame", frame)
   cv2.imshow("Mask", mask)
 
   key = cv2.waitKey(1)
   if key == 27:
     break
+
 
 cap.release()
 cv2.destroyWindow()
