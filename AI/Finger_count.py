@@ -58,8 +58,7 @@ while True:
                 fingers.append(0)
         #print(fingers)
         totalFingers = fingers.count(1)
-        if totalFingers == '5':
-            print('hi')
+        
         print(totalFingers)
 
         #이미지를 사이즈에 맞게 적용
