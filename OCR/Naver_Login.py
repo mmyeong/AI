@@ -26,7 +26,7 @@ time.sleep(1)
 
 # pw 입력
 tag_pw.click()
-pyperclip.copy('Thtnlsla3913@')
+pyperclip.copy('pwd')
 tag_pw.send_keys(Keys.CONTROL, 'v')
 time.sleep(1)
 
