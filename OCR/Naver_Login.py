@@ -46,9 +46,11 @@ time.sleep(2)
 #메일 클릭
 mail_text = driver.find_element_by_xpath('//*[@id="list_for_view"]/ol/li[1]/div/div[2]/a[1]/span[1]')
 mail_text.click()
+time.sleep(2)
 #메일 삭제
 test = driver.find_element_by_xpath('//*[@id="readBtnMenu"]/div[1]/span[2]/button[2]')
 test.click()
+time.sleep(2)
 #모든 메일 출력
 # for title in title_list:
 #     print(title.text)
