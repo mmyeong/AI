@@ -16,14 +16,15 @@ dst1 = cv2.inRange(src,(0,128,128),(100, 255, 255))#Yellow
 dst2 = cv2.inRange(gray,(0,150,0),(45, 255, 255))#Yellow
 
 
-#4x4로 크기 축소
-gray=cv2.resize(dst2,(4,4))
 
 
 #모폴로지
 kernel = np.ones((11, 11), np.uint8)
 result = cv2.morphologyEx(dst2, cv2.MORPH_CLOSE, kernel)
 #H 0~45 S 150~255 V 0~255
+
+#4x4로 크기 축소
+gray=cv2.resize(result,(4,4))
 
 #평균값 구하기
 avg = gray.mean()
