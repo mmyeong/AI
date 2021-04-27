@@ -25,24 +25,28 @@ dst = cv2.inRange(image,lower,higher)
 #morphology
 closed = cv2.morphologyEx(dst, cv2.MORPH_CLOSE, kernel)
 opened = cv2.morphologyEx(closed, cv2.MORPH_OPEN, kernel)
+
 #이미지 평균값 구하기
 avg = dst.mean()
 #평균값을 기준으로 0과 1로 변환
 #4x4로 크기 축소
-gray=cv2.resize(opened,(5,5))
-hash = 1*(gray>avg)
+dst=cv2.resize(opened,(5,5))
+hash = 1*(dst>avg)
 print(hash)
 
 
 
-if sum(hash[:,1]) + sum(hash[:,3])==2:
+if (hash[1,2])+(hash[2,1])+(hash[2,3])+(hash[3,2])+(hash[3,3]) == 4 :
     print('삼거리')
-elif sum(hash[1,2])+sum(hash[2,1])+sum(hash[2,3])+sum(hash[3,2])==4:
+
+elif (hash[1,2])+(hash[2,1])+(hash[2,3])+(hash[3,2])+(hash[3,3]) == 5:
     print('사거리')
 
+elif sum(hash[:,2])==5:
+    print('직진')
 
-#
-# cv2.imshow('',image)
-# cv2.imshow('1',opened)
-# cv2.waitKey()
-# cv2.destroyAllWindows()
+
+cv2.imshow('',image)
+cv2.imshow('1',opened)
+cv2.waitKey()
+cv2.destroyAllWindows()
