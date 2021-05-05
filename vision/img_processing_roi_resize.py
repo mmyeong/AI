@@ -2,14 +2,14 @@ import cv2
 import numpy as np
 import imutils
 
-img = cv2.imread('need/threeblock1.jpg')
+img = cv2.imread('need/threeblocktest.JPG')
 image = imutils.resize(img,width=400)
 
 #Bounding Box / Color
-cv2.rectangle(image, (190,180),(230,220),(0,0,255),2)
+cv2.rectangle(image, (190,140),(230,180),(0,0,255),2)
 
 #img min,max
-region = image[180:220,190:230]
+region = image[140:180,190:230]
 
 b,g,r = np.mean(region, axis=(0,1)).round(2)
 print([b,g,r])
@@ -32,18 +32,22 @@ avg = dst.mean()
 #4x4로 크기 축소
 dst=cv2.resize(opened,(5,5))
 hash = 1*(dst>avg)
-print(hash)
-
-
-
-if (hash[1,2])+(hash[2,1])+(hash[2,3])+(hash[3,2])+(hash[3,3]) == 4 :
-    print('삼거리')
-
-elif (hash[1,2])+(hash[2,1])+(hash[2,3])+(hash[3,2])+(hash[3,3]) == 5:
-    print('사거리')
-
-elif sum(hash[:,2])==5:
-    print('직진')
+sum_width = []
+sum_length = []
+for a in hash[3,:]:
+    sum_width.append(a) #3행 추출
+for a in hash[:,3]:
+    sum_length.append(a) #3열 추출
+left = (hash[2,0],hash[2,1],hash[2,2],hash[2,2],hash[3,2],hash[4,2],hash[2,4],hash[2,3])
+print(left)
+if sum(sum_width) + sum(sum_length) == 10:
+    print("전방에 사거리블록이 있습니다.")
+elif left == (1, 1, 1, 1, 1, 1, 0, 0):
+    print('전방에 좌회전블록이 있습니다.')
+elif left == (0, 0, 1, 1, 1, 1, 1, 1):
+    print('전방에 우회전블록이 있습니다.')
+else:
+    print("전방에 삼거리블록이 있습니다.")
 
 
 cv2.imshow('',image)
