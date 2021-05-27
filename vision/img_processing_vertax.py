@@ -13,7 +13,7 @@ def setLabel(img, pts, label):
 
 
 def main():
-    img = cv2.imread('need/fourblock.jpg', cv2.IMREAD_COLOR)
+    img = cv2.imread('이미지', cv2.IMREAD_COLOR)
 
     if img is None:
         print('Image load failed!')
